@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 // Create the tile layer that will be the background of the map
 var lightmap = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
     attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
@@ -36,7 +35,6 @@ var overlayMaps = {
 };
 
 // Create a layer control, pass in the baseMaps and overlayMaps. Add the layer control to the map
-=======
 // Create the tile layer that will be the background of the map
 var lightmap = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
     attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
@@ -74,5 +72,4 @@ var overlayMaps = {
 };
 
 // Create a layer control, pass in the baseMaps and overlayMaps. Add the layer control to the map
->>>>>>> 70c8bea36cea16fe0a7ef80fff3a6beb57c7dd79
 L.control.layers(null, overlays).addTo(map);
