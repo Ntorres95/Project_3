@@ -6,12 +6,12 @@ var lightmap = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/{id}/tiles/{
     accessToken: API_KEY
 });
 
-  // Create a baseMaps object to hold the lightmap layer
-var Available = new L.LayerGroup(),
-    Top_10 = new L.LayerGroup(),
-    Empty = new L.LayerGroup()
+// layers for avail, top10, empty data
+var Available = new L.LayerGroup();
+var Top_10 = new L.LayerGroup();
+var Empty = new L.LayerGroup();
 
-  // Create the map object with layers
+// Create the map object with layers
 var map = L.map("map-id", {
     center: [42.3601, -71.0589],
     zoom: 12,
