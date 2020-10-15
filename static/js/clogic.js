@@ -1,3 +1,23 @@
+const URI = "/listing";
+d3.json(URI).then(function(data) { 
+  data.index = +data.index;
+  data.id = +data.id;
+  data.listing_url = +data.listing_url;
+  data.name = +data.name;
+  data.price_y = +data.price_y;
+  data.number_of_reviews = +data.number_of_reviews;
+  data.review_scores_rating = +data.review_scores_rating;
+  data.date = +data.date;
+  data.available = +data.available;
+  data.neighbourhood = +data.neighbourhood;
+  data.latitude = +data.latitude;
+  data.longitude = +data.longitude;
+  data.propert_type = +data.propert_type;
+  data.bedrooms = +data.bedrooms;
+  data.beds = +data.beds;
+
+console.log(data)
+}
 // Create the tile layer that will be the background of the map
 var lightmap = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
     attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
