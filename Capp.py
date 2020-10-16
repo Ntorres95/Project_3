@@ -60,4 +60,7 @@ def getAllListings():
         listings.append(listing)
 
     return jsonify(listings)
+
+@app.route("/comparisons")
+
     
