@@ -23,6 +23,38 @@ Base.prepare(engine, reflect=True)
 Review = Base.classes.reviews
 Listing = Base.classes.listings
 
+#function to collect the listings info
+def getAllListings():
+    # Create our session (link) from Python to the DB
+    session = Session(engine)
+
+    # results is a list of tuples
+    results = session.query(Listing.index, Listing.id, Listing.listing_url, Listing.name, Listing.price_y, Listing.number_of_reviews, Listing.review_scores_rating, Listing.date, Listing.available, Listing.neighbourhood, Listing.latitude, Listing.longitude, Listing.property_type, Listing.bedrooms, Listing.beds, Listing.zipcode).all()
+    session.close()
+    listings = []
+    for row in results:
+        listing = {}
+        listing['index'] = row.index
+        listing['id'] = row.id
+        listing['listing_url'] = row.listing_url
+        listing['name'] = row.name
+        listing['price_y'] = row.price
+        listing['number_of_reviews'] = row.number_of_reviews
+        listing['review_scores_rating'] = row.review_scores_rating
+        listing['date'] = row.date
+        listing['available'] = row.available
+        listing['neighbourhood'] = row.neighbourhood
+        listing['latitude'] = row.latitude
+        listing['longitude'] = row.longitude
+        listing['property_type'] = row.property_type
+        listing['bedrooms'] = row.bedrooms
+        listing['beds'] = row.beds
+        #added the zipcode column to your code in case you wanted or needed it
+        listing['zipcode'] = row.zipcode
+        listings.append(listing)
+
+    return jsonify(listings)
+
 # Flask Setup
 app = Flask(__name__)
 
@@ -65,34 +97,15 @@ def getAllListings():
 
 @app.route("/comparisons")
 def comparions():
-    
-    #borrowed general code layout from listing flask route
-    
-    # Create our session (link) from Python to the DB
-    session = Session(engine)
+    return render_template('comparisons.html')
 
-    # results is a list of tuples
-    results = session.query(Listing.index, Listing.id, Listing.listing_url, Listing.name, Listing.price_y, Listing.number_of_reviews, Listing.review_scores_rating, Listing.date, Listing.available, Listing.neighbourhood, Listing.latitude, Listing.longitude, Listing.property_type, Listing.bedrooms, Listing.beds, Listing.zipcode).all()
-    session.close()
-    comparisonData = []
-    for row in results:
-        listingInfo = {}
-        listingInfo['index'] = row.index
-        listingInfo['id'] = row.id
-        listingInfo['listing_url'] = row.listing_url
-        listingInfo['name'] = row.name
-        listingInfo['price_y'] = row.price
-        listingInfo['review_scores_rating'] = row.review_scores_rating
-        listingInfo['neighbourhood'] = row.neighbourhood
-        listingInfo['latitude'] = row.latitude
-        listingInfo['longitude'] = row.longitude
-        listingInfo['property_type'] = row.property_type
-        listingInfo['bedrooms'] = row.bedrooms
-        listingInfo['beds'] = row.beds
-        listingInfo['zipcode'] = row.zipcode
-        comparisonData.append(listingInfo)
+@app.route("/map")
+def map():
+    return render_template('map.html')
 
-    return jsonify(comparisonData)
-   
+@app.route("/data")
+def data():
+    return render_template('data.html')
+
 if __name__ == "__main__":
     app.run(debug=True)
