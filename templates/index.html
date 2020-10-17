@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boston AirBnb Project 3</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+    <link href="style.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <!-- Navigation -->
+
+    <nav class="navbar-expand-md navbar-light bg-light stick-top ">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="./index.html">Boston Airbnb</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <!-- <div class="dropdown">
+                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Maps
+                            </a>
+
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item" href="./map.html">Map</a>
+                                <a class="dropdown-item" href="./plot2.html">Plot 2</a>
+                                <a class="dropdown-item" href="./plot3.html">Plot 3</a>
+                                <a class="dropdown-item" href="./plot4.html">Plot 4</a>
+                            </div>
+                        </div> -->
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="./map.html"> Map </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="./comparisons.html">Comparison</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="./data.html">Data</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!--- Image Slider -->
+    <div id="slides" class="carousel" data-ride="carousel">
+        <!-- <ul class="carousel-indicators">
+            <li data-target="#slides" data-slide-to="0" class="active"></li>
+            <li data-target="#slides" data-slide-to="1"></li>
+            <li data-target="#slides" data-slide-to="2"></li>
+
+
+        </ul> -->
+        <div class="carousel-inner">
+            <div class="carousel-item active" style="text-align: center">
+                
+                <img src="static/images/BABNB_Head.jpg">
+
+            </div>
+            
+        </div>
+    </div>
+
+<!--- Welcome Section -->
+<div class="container-fluid padding">
+    <div class="row welcome text-center">
+        <div class="col-12">
+            <h1 class="display-4">Welcome to our page!</h1>
+        </div>
+        <hr>
+        <div class="col-12">
+            <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam pariatur corrupti quibusdam quasi, nulla dolore quos repudiandae reprehenderit neque nisi, illo minus odit distinctio aspernatur alias modi! Molestias, placeat eaque.</p>
+        </div>
+    </div>
+</div>
+
+<!--- Three Column Section -->
+<div class="container-fluid padding">
+    <div class="row text-center padding">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            
+            <h3>Maps</h3>
+            <p>The plot/visualization itself for the selected comparison.</p>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            
+            <h3>Comparison</h3>
+            <p>Contains all of the visualizations on the same page so we can easily visually compare them.</p>
+        </div>
+        <div class="col-xs-12 col-md-4">
+            
+            <h3>Data</h3>
+            <p>Displays a responsive table containing the data used in the visualizations.</p>
+        </div>
+
+    </div>
+    <hr class="my-4">
+</div>
+
+<!--- Two Column Section -->
+<div class="container-fluid padding">
+<div class="row padding">
+    <div class="col-md-6">
+        <h2>Visualizations</h2>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cum error sapiente in tenetur, dolorem maxime. Praesentium omnis non iste quidem quibusdam quaerat asperiores esse dolore perspiciatis cum, eligendi voluptas aspernatur.</p>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. At porro saepe doloribus expedita veniam blanditiis suscipit, dolore eveniet nobis nesciunt tenetur consectetur. Alias quis minima nulla repellat voluptatum doloribus cumque!</p>
+        <br>
+        <a href="./plot1.html" class="btn btn-primary">Learn More</a>
+    </div>
+    <div class="col-md-6" id="map">
+        <img src="static/images/map_for_now.png">
+    </div>
+</div>
+</div>
+
+    
+</body>
