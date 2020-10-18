@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Boston AirBnb Project 3</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-
-    <link href="style.css" rel="stylesheet">
+    <link href="static/css/style.css" rel="stylesheet">
 
 </head>
 
@@ -16,7 +15,7 @@
 
     <nav class="navbar-expand-md navbar-light bg-light stick-top ">
         <div class="container-fluid">
-            <a class="navbar-brand" href="./index.html">Boston Airbnb</a>
+            <a class="navbar-brand" href="http://127.0.0.1:5000/">Boston Airbnb</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -38,13 +37,13 @@
                         </div> -->
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="./map.html"> Map </a>
+                        <a class="nav-link" href="http://127.0.0.1:5000/map"> Map </a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="./comparisons.html">Comparison</a>
+                        <a class="nav-link" href="http://127.0.0.1:5000/comparisons">Comparison</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="./data.html">Data</a>
+                        <a class="nav-link" href="http://127.0.0.1:5000/data">Data</a>
                     </li>
 
                 </ul>
@@ -59,12 +58,87 @@
             </div>
             <hr>
             <div class="col-12">
-                <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam pariatur corrupti quibusdam quasi, nulla dolore quos repudiandae reprehenderit neque nisi, illo minus odit distinctio aspernatur alias modi! Molestias, placeat eaque.</p>
+                <p class="lead">gherwht</p>
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-2">
+          <div class="well">
+            <h5>Zipcode:</h5>
+            <select id="selDataset" onchange="optionChanged(this.value)"></select>
+          </div>
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h3 class="panel-title">General Info.</h3>
+            </div>
+            <div id="sample-metadata" class="panel-body"></div>
+          </div>
+        </div>
+        <div class="col-md-5">
+          <div id="bar"></div>
+        </div>
+        <div class="col-md-5">
+          <div id="gauge"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div id="bubble"></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.9.7/d3.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <!-- <script src="comparisons.js"></script> -->
+    <script>
+        d3.json('http://127.0.0.1:5000/listing').then(function(data) {
+            
+            //sanity check
+            //console.log(data);
+
+            //arrays to save the zipcodes
+            var zipcodes = [];
+
+            // Grab values from the data json object to build the plots
+            for (var i = 0; i < data.length; i++) {
+                zipcodes.push(data[i].zipcode);
+            }
+
+            //sanity check
+            //console.log(zipcodes);
+
+            var uniqueZips = zipcodes.filter((z, index) => {
+                return zipcodes.indexOf(z) === index;
+            });
+
+            //sort the zipcodes
+            uniqueZips.sort((a,b)=>a-b);
+
+            //sanity check
+            //console.log(uniqueZips);
 
 
+            //call on the function to populate the dropdown
+            populateMenu(uniqueZips);
 
-    
+        });
+
+        //function to poluate the dropdown
+        function populateMenu(uniqueZips) {
+
+            var sel = document.getElementById('selDataset');
+            var fragment = document.createDocumentFragment();
+
+            uniqueZips.forEach(function(Zip, index) {
+                var opt = document.createElement('option');
+                opt.innerHTML = Zip;
+                opt.value = Zip;
+                fragment.appendChild(opt);
+            });
+
+            sel.appendChild(fragment);
+        }
+    </script>
 </body>
