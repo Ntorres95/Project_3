@@ -8,7 +8,7 @@ import datetime as dt
 from flask import Flask, render_template, redirect
 
 # Database Setup
-DATABASE_URI = 'postgresql://postgres:postgres@localhost:5432/airbnb_db'
+DATABASE_URI = 'postgresql+psycopg2://postgres:postgres@localhost:5432/airbnb_db'
 
 # create an engine using the connection string
 engine = create_engine(DATABASE_URI)
@@ -20,8 +20,9 @@ Base = automap_base()
 Base.prepare(engine, reflect=True)
 
 # Save references to each table
-Review = Base.classes.reviews
+# Review = Base.classes.reviews
 Listing = Base.classes.listings
+print(Base.classes.keys())
 
 # Flask Setup
 app = Flask(__name__)
@@ -77,3 +78,4 @@ def data():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
