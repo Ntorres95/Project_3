@@ -1,5 +1,5 @@
 // Create the map object with layers
-var myMap = L.map("map-id", {
+var myMap = L.map("map", {
   center: [42.3601, -71.0589],
   zoom: 12
 });
@@ -12,7 +12,7 @@ L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/{id}/tiles/{z}/{x}/{y}?acce
     accessToken: API_KEY
 }).addTo(myMap);
 
-d3.csv("Resources/listings.csv", function(data) { 
+d3.csv("Project_3/Resources/listings.csv", function(data) { 
   console.log(data);
   for (var i = 0; i < data.length; i++) {
     var listing = data[i];
@@ -21,5 +21,5 @@ d3.csv("Resources/listings.csv", function(data) {
       parseFloat(listing["longitude"])
     ])
       .addTo(myMap)
-      .bindPopup(listing.name)
+      .bindPopup("Listing Name: " + listing.name + "<br>Number of Reviews: " + listing.number_of_reviews)
 }});
