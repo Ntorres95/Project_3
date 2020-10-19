@@ -147,20 +147,35 @@
             //grab  the info needed
             d3.json("/listing").then(function(data) {
                 
-                //array to save the selected id's data
-                var names = [];
-                var ratings = [];
-                var type = [];
-                var neighbourhood = [];
-                var bedrooms = [];
-                var beds = [];
-                var prices = [];
+                //arrays to save the zipcodes
+                var zipcodes = [];
+                
+                // Grab values from the data json object to build the plots
+                for (var i = 0; i < data.length; i++) {
+                    zipcodes.push(data[i].zipcode);
+                }
+                
+                //sanity check
+                //console.log(zipcodes);
+                
+                var uniqueZips = zipcodes.filter((z, index) => {
+                    return zipcodes.indexOf(z) === index;
+                });
+                
+                //array to hold the zip totals
+                var zipTotals = [];
                 
                 //loop to search for the info on the selected id
-                for (i = 0; i < data.length; i++) {
+                for (i = 0; i < uniqueZips.length; i++) {
+                    
+                    for (j = 0; j < data.length; j++) {
+                        if (uniqueZips[i])
+                    }
+                    
+                    
                     
                     //conditional to pull the info it matches the selected id
-                    if (zip == data[i].zipcode) {
+                    if (zip == data[i].) {
                         
                         //save listings info
                         names.push(data[i].name);
@@ -179,17 +194,12 @@
                 
                 //create the data array for the plot
                 var trace1 = {
-                    x: ratings,
+                    x: zipTotals,
                     type: "bar",
-                    orientation: 'h',                    
-                    transforms: [{
-                        type: 'sort',
-                        target: 'y',
-                        order: 'descending'
-                    }]
+                    orientation: 'h',
                 };
                 
-                var tickvals = names.map(function(e, i) {
+                var tickvals = zipcodes.map(function(e, i) {
                     return i;
                 });
                 
@@ -199,7 +209,7 @@
                 //create the layout array for the plot
                 var layout = {
                     yaxis:{
-                        ticktext: names,
+                        ticktext: zipcodes,
                         tickvals: tickvals
                     },
                     height: 750,
