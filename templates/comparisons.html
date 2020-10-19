@@ -164,29 +164,21 @@
                 
                 //array to hold the zip totals
                 var zipTotals = [];
+                var count = 0;
                 
                 //loop to search for the info on the selected id
                 for (i = 0; i < uniqueZips.length; i++) {
                     
                     for (j = 0; j < data.length; j++) {
-                        if (uniqueZips[i])
+                        if (uniqueZips[i] == data[j].zipcode) {
+                            count++;
+                        }
                     }
-                    
-                    
-                    
-                    //conditional to pull the info it matches the selected id
-                    if (zip == data[i].) {
-                        
-                        //save listings info
-                        names.push(data[i].name);
-                        ratings.push(data[i].review_scores_rating);
-                        type.push(data[i].property_type);
-                        neighbourhood.push(data[i].neighbourhood);
-                        bedrooms.push(data[i].bedrooms);
-                        beds.push(data[i].beds);
-                        prices.push(data[i].price_y)
-                    }
-                }
+                    zipTotals.push[count];
+                } 
+
+                //sanity check
+                console.log(zipTotals);
                 
                 //sanity check
                 //console.log(names);
