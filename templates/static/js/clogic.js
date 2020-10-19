@@ -12,7 +12,7 @@ L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/{id}/tiles/{z}/{x}/{y}?acce
     accessToken: API_KEY
 }).addTo(myMap);
 
-d3.csv("Project_3/Resources/listings.csv", function(data) { 
+d3.csv("Resources/listings.csv", function(data) { 
   console.log(data);
   for (var i = 0; i < data.length; i++) {
     var listing = data[i];
