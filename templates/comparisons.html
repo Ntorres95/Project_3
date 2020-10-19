@@ -15,7 +15,7 @@
     
     <nav class="navbar-expand-md navbar-light bg-light stick-top ">
         <div class="container-fluid">
-            <a class="navbar-brand" href="./index.html">Boston Airbnb</a>
+            <a class="navbar-brand" href="/">Boston Airbnb</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -24,13 +24,13 @@
                     <li class="nav-item active">
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="./map.html"> Map </a>
+                    <a class="nav-link" href="/map"> Map </a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="./comparisons.html">Comparison</a>
+                    <a class="nav-link" href="/comparisons">Comparison</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="./data.html">Data</a>
+                    <a class="nav-link" href="/data">Data</a>
                 </li>
                 </ul>
             </div>
@@ -44,7 +44,7 @@
             </div>
             <hr>
             <div class="col-12">
-                <p class="lead">gherwht</p>
+                <p class="lead"></p>
             </div>
         </div>
     </div>
@@ -58,11 +58,11 @@
                 <div class="panel-heading">
                     <h3 class="panel-title">General Info.</h3>
                 </div>
-                <div id="sample-metadata" class="panel-body"></div>
+                <div id="gen-info" class="panel-body"></div>
             </div>
         </div>
         <div class="col-md-5">
-            <div id="bar"></div>
+            <div id="scatter"></div>
         </div>
         <div class="col-md-5">
             <div id="gauge"></div>
@@ -70,91 +70,24 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <div id="scatter"></div>
+            <div id="bar"></div>
         </div>
     </div>
-<<<<<<< HEAD
-
-
-<script src="https://d3js.org/d3.v5.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
-<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-<!-- <script type="text/javascript" src="static/comparisons.js"></script> -->
-<script type="text/javascript" src="{{url_for('static',filename='js/comparisons2.js')}}"></script>
-<!-- <script>
-    
-    populateMenu();
-
-    //event handler to track when a new id is selected
-    d3.selectAll("#selDataset").on("click", optionChanged);
-
-    //function to populate the dropdown
-    function populateMenu() {
-
-        d3.json("/listing").then(function(data) {
-
-            //sanity check
-            //console.log(data);
-            
-            //arrays to save the zipcodes
-            var zipcodes = [];
-            
-            // Grab values from the data json object to build the plots
-            for (var i = 0; i < data.length; i++) {
-                zipcodes.push(data[i].zipcode);
-            }
-            
-            //sanity check
-            //console.log(zipcodes);
-            
-            var uniqueZips = zipcodes.filter((z, index) => {
-                return zipcodes.indexOf(z) === index;
-            });
-            
-            //sort the zipcodes
-            uniqueZips.sort((a,b)=>a-b);
-            
-            //sanity check
-            //console.log(uniqueZips);
-            var sel = document.getElementById('selDataset');
-            var fragment = document.createDocumentFragment();
-            
-            uniqueZips.forEach(function(Zip, index) {
-                var opt = document.createElement('option');
-                opt.innerHTML = Zip;
-                opt.value = Zip;
-                fragment.appendChild(opt);
-            });
-            
-            sel.appendChild(fragment);
-        });
-    }
-    //function to collect the selected id 
-    function optionChanged () {
-        var selected = d3.select("#selDataset");
-        var zip = selected.property("value");
-=======
     
     
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <!-- <script type="text/javascript" src="templates/static/comparisons.js"></script> -->
+    <script type="text/javascript" src="{{url_for('static',filename='/js/comparisons.js')}}"></script>
     <script>
->>>>>>> b441f068046cd43e9adc44bd73dafb6340e1ab61
         
         populateMenu();
         
         //event handler to track when a new id is selected
         d3.selectAll("#selDataset").on("click", optionChanged);
         
-<<<<<<< HEAD
-        //grab  the info needed
-        d3.json("/listing").then(function(data) {
-=======
         //function to populate the dropdown
         function populateMenu() {
->>>>>>> b441f068046cd43e9adc44bd73dafb6340e1ab61
             
             d3.json("/listing").then(function(data) {
                 
@@ -205,6 +138,7 @@
             //call on the function to create the plots
             barPlot(zip);
             scatterPlot(zip);
+            metaData(zip);
         }
         
         //function to create the plot
@@ -247,7 +181,12 @@
                 var trace1 = {
                     x: ratings,
                     type: "bar",
-                    orientation: 'h',
+                    orientation: 'h',                    
+                    transforms: [{
+                        type: 'sort',
+                        target: 'y',
+                        order: 'descending'
+                    }]
                 };
                 
                 var tickvals = names.map(function(e, i) {
@@ -263,17 +202,11 @@
                         ticktext: names,
                         tickvals: tickvals
                     },
-                    height: 800,
-                    width: 800,
+                    height: 750,
+                    width: 1200
                 };
                 
-                Plotly.newPlot("bar", data, layout, [{
-                    transforms: [{
-                        type: 'sort',
-                        target: 'y',
-                        order: 'descending'
-                    }]
-                }])
+                Plotly.newPlot("bar", data, layout);
             });
         }
         //function for creating the bubble chart
@@ -283,6 +216,68 @@
             d3.json("/listing").then(function(data) {
                 
                 //array to save the selected id's data
+                var names = [];
+                var ratings = [];
+                var type = [];
+                var neighbourhood = [];
+                var bedrooms = [];
+                var beds = [];
+                var prices = [];
+                
+                //loop to search for the info on the selected id
+                for (i = 0; i < data.length; i++) {
+                    
+                    //conditional to pull the info it matches the selected id
+                    if (zip == data[i].zipcode) {
+                        
+                        //save listings info
+                        names.push(data[i].name);
+                        ratings.push(data[i].review_scores_rating);
+                        type.push(data[i].property_type);
+                        neighbourhood.push(data[i].neighbourhood);
+                        bedrooms.push(data[i].bedrooms);
+                        beds.push(data[i].beds);
+                        prices.push(data[i].price_y)
+                    }
+                }
+                
+                //var to hold the data info to be plotted
+                var trace1 = {
+                    x: prices,
+                    y: ratings,
+                    mode: 'markers',
+                    text: names,
+                    marker: {
+                        color: ratings,
+                        size: 15
+                    }
+                };
+                
+                var data = [trace1];
+                
+                //var to hold the layout info of the graph
+                var layout = {
+                    xaxis: {
+                        title: {
+                            text: "Price vs Ratings"
+                        }
+                    },
+                    showlegend: false,
+                    height: 600,
+                    width: 1000
+                };
+                Plotly.newPlot('scatter', data, layout);
+            });
+        }
+        
+        //function to grab and fill in the metadata
+        function metaData(zip) {
+            
+            //grab  the info needed
+            d3.json("/listing").then(function(data) {
+        
+                //array to save the selected id's data
+                var urls = [];
                 var names = [];
                 var ratings = [];
                 var prices = [];
@@ -296,49 +291,70 @@
                         //save listings info
                         names.push(data[i].name);
                         ratings.push(data[i].review_scores_rating);
-                        prices.push(data[i].price_y)
+                        prices.push(data[i].price_y);
+                        urls.push(data[i].listing_url);
                     }
                 }
                 
-                //var to hold the data info to be plotted
-                var trace1 = {
-                    x: otuIds,
-                    y: sampleValues,
-                    mode: 'markers',
-                    text: otuLabels,
-                    marker: {
-                        size: sampleValues,
-                        color: otuIds
-                    }
-                };
+                //variables to fill in the general data chart
+                var total = names.length;
+                var most = Math.max(...prices);
+                var least = Math.min(...prices);
+                var highest = Math.max(...ratings);
+                var lowest = Math.min(...ratings);
+
                 
-                var data = [trace1];
-                
-                //var to hold the layout info of the graph
-                var layout = {
-                    xaxis: {
-                        title: {
-                            text: "OTU ID's"
-                        }
-                    },
-                    showlegend: false,
-                    height: 600,
-                    width: 1000
-                };
-                
-                //create the new plot
-                Plotly.newPlot('scatter', data, layout);
+                //array to hold all of the meta data
+                var genInfo = [];
+        
+        
+                genInfo = [{"total": total,
+                    "most": most,
+                    "least": least,
+                    "highest": highest,
+                    "lowest": lowest
+                }];
+        
+                var str = '<p>Total Listings: <span id="total"></span></p><p>Highest Rating: <span id="highest"></span></p><p>Cheapest: $<span id="least"></span></p></span></p><p>Lowest Rating: <span id="lowest"></span></p><p>Most Expensive: $<span id="most">';
+        
+                document.getElementById( 'gen-info' ).innerHTML = str;
+                document.getElementById("total").innerHTML = total;
+                document.getElementById("most").innerHTML = most;
+                document.getElementById("least").innerHTML = least;
+                document.getElementById("highest").innerHTML = highest;
+                document.getElementById("lowest").innerHTML = lowest;
+        
             });
         }
-        
-<<<<<<< HEAD
-        //create the new plot
-        Plotly.newPlot('scatter', data, layout);
-    });
-}
 
-</script> -->
-=======
+            // //grab  the info needed
+            // d3.json("/listing").then(function(data) {
+                
+            //     //array to save the selected id's data
+            //     var names = [];
+            //     var ratings = [];
+            //     var type = [];
+            //     var neighbourhood = [];
+            //     var bedrooms = [];
+            //     var beds = [];
+            //     var prices = [];
+                
+            //     //loop to search for the info on the selected id
+            //     for (i = 0; i < data.length; i++) {
+                    
+            //         //conditional to pull the info it matches the selected id
+            //         if (zip == data[i].zipcode) {
+                        
+            //             //save listings info
+            //             names.push(data[i].name);
+            //             ratings.push(data[i].review_scores_rating);
+            //             type.push(data[i].property_type);
+            //             neighbourhood.push(data[i].neighbourhood);
+            //             bedrooms.push(data[i].bedrooms);
+            //             beds.push(data[i].beds);
+            //             prices.push(data[i].price_y)
+            //         }
+            //     }
+            // });
     </script>
->>>>>>> b441f068046cd43e9adc44bd73dafb6340e1ab61
 </body>
