@@ -215,7 +215,7 @@
         function scatterPlot (zip) {
             
             //grab  the info needed
-            d3.json("/listing").then(function(data) {
+            d3.csv("Resources/listing.csv").then(function(data) {
                 
                 //array to save the selected id's data
                 var names = [];
@@ -276,7 +276,7 @@
         function metaData(zip) {
             
             //grab  the info needed
-            d3.json("/listing").then(function(data) {
+            d3.csv("Resources/listing.csv").then(function(data) {
         
                 //array to save the selected id's data
                 var urls = [];
