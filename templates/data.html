@@ -38,6 +38,15 @@
                         </div> -->
                     </li>
                     <li class="nav-item active">
+                        <a class="nav-link" href="#Listings">Listings</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#Calendar">Calendar</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#bot">Bottom</a>
+                    </li>
+                    <li class="nav-item active">
                         <a class="nav-link" href="./map.html"> Map </a>
                     </li>
                     <li class="nav-item active">
@@ -56,14 +65,71 @@
         <div class="row welcome text-center">
             <div class="col-12">
                 <h1 class="display-4">Data</h1>
+                    <a name="top"></a>
             </div>
-            <hr>
+                <hr>
             <div class="col-12">
                 <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam pariatur corrupti quibusdam quasi, nulla dolore quos repudiandae reprehenderit neque nisi, illo minus odit distinctio aspernatur alias modi! Molestias, placeat eaque.</p>
             </div>
+            <div class="row data-body">
+                <div class="factor-col">
+                    <div class="col-md-12">
+                            <h1 class='data-title title'>Data</h1>
+                            <p class='factor-p'> The following table is the raw data used for analysis during this project.</p>
+                    <!--the listings table from csv-->
+                    <h1 class='data-title title'>Listings</h1>
+                        <a name="Listings"></a>
+                        <div class="table-responsive">
+                            <table class="table table-striped  table-hover table-full-width">
+                      <thead>
+                        <tr style="text-align: left;">
+                          <th>Listing ID</th>
+                            <th>Listing URL</th>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Number of Reviews</th>
+                            <th>Review Score Rating</th>
+                            <th>Date</th>
+                            <th>Available</th>
+                            <th>Neighborhood</th>
+                            <th>Latitude</th>
+                            <th>Longitude</th>
+                            <th>Property Type</th>
+                            <th>Bedrooms</th>
+                            <th>Beds</th>
+                            <th>Zipcode</th>
+                        </tr>
+                        </thead>
+                            </table>
+                        </div>
+                    </div>
+                <a type="button" class="btn btn-light btn-sm" href="#top" role='button' style="background-color: #00000;">Top</a>
+                <div class="row data-body">
+
+                        <div class="col-lg-12">
+                        <!--the listings table from csv-->
+                        <h1 class='data-title title'>Calendar</h1>
+                            <a name="Calendar"></a>
+                            <div class="table-responsive">
+                                <table class="table table-striped  table-hover table-full-width">
+                          <thead>
+                            <tr style="text-align: left;">
+                              <th>Listing ID</th>
+                                <th>Date</th>
+                                <th>Available</th>
+                                <th>Price</th>
+                            </tr>
+                            </thead>
+                                </table>
+                            <a name="bot"></a>
+                            <a type="button" class="btn btn-light btn-sm" href="#top" role='button' style="background-color: #00000;">Top</a>
+                            </div>
+                        </div>
+                </div>
+            </div>
         </div>
     </div>
-
+    </div>
 
 
     
