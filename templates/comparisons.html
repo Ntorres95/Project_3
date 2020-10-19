@@ -7,12 +7,12 @@
     <title>Boston AirBnb Project 3</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link href="static/css/style.css" rel="stylesheet">
-
+    
 </head>
 
 <body>
     <!-- Navigation -->
-
+    
     <nav class="navbar-expand-md navbar-light bg-light stick-top ">
         <div class="container-fluid">
             <a class="navbar-brand" href="http://127.0.0.1:5000/">Boston Airbnb</a>
@@ -24,121 +24,137 @@
                     <li class="nav-item active">
                         <!-- <div class="dropdown">
                             <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Maps
-                            </a>
-
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item" href="./map.html">Map</a>
-                                <a class="dropdown-item" href="./plot2.html">Plot 2</a>
-                                <a class="dropdown-item" href="./plot3.html">Plot 3</a>
-                                <a class="dropdown-item" href="./plot4.html">Plot 4</a>
-                            </div>
-                        </div> -->
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="http://127.0.0.1:5000/map"> Map </a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="http://127.0.0.1:5000/comparisons">Comparison</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="http://127.0.0.1:5000/data">Data</a>
-                    </li>
-
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <div class="container-fluid padding">
-        <div class="row welcome text-center">
-            <div class="col-12">
-                <h1 class="display-4">Comparisons</h1>
-            </div>
-            <hr>
-            <div class="col-12">
-                <p class="lead">gherwht</p>
-            </div>
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Maps
+                        </a>
+                        
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="./map.html">Map</a>
+                            <a class="dropdown-item" href="./plot2.html">Plot 2</a>
+                            <a class="dropdown-item" href="./plot3.html">Plot 3</a>
+                            <a class="dropdown-item" href="./plot4.html">Plot 4</a>
+                        </div>
+                    </div> -->
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="http://127.0.0.1:5000/map"> Map </a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="http://127.0.0.1:5000/comparisons">Comparison</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="http://127.0.0.1:5000/data">Data</a>
+                </li>
+                
+            </ul>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-2">
-          <div class="well">
+</nav>
+
+<div class="container-fluid padding">
+    <div class="row welcome text-center">
+        <div class="col-12">
+            <h1 class="display-4">Comparisons</h1>
+        </div>
+        <hr>
+        <div class="col-12">
+            <p class="lead">gherwht</p>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-2">
+        <div class="well">
             <h5>Zipcode:</h5>
             <select id="selDataset" onchange="optionChanged(this.value)"></select>
-          </div>
-          <div class="panel panel-primary">
+        </div>
+        <div class="panel panel-primary">
             <div class="panel-heading">
-              <h3 class="panel-title">General Info.</h3>
+                <h3 class="panel-title">General Info.</h3>
             </div>
             <div id="sample-metadata" class="panel-body"></div>
-          </div>
         </div>
-        <div class="col-md-5">
-          <div id="bar"></div>
-        </div>
-        <div class="col-md-5">
-          <div id="gauge"></div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <div id="bubble"></div>
-        </div>
-      </div>
     </div>
+    <div class="col-md-5">
+        <div id="bar"></div>
+    </div>
+    <div class="col-md-5">
+        <div id="gauge"></div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div id="bubble"></div>
+    </div>
+</div>
+</div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.9.7/d3.min.js"></script>
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <!-- <script type="text/javascript" src="templates/comparisons.js"></script> -->
-    <script>
-        d3.json('http://127.0.0.1:5000/listing').then(function(data) {
-            
-            //sanity check
-            //console.log(data);
-
-            //arrays to save the zipcodes
-            var zipcodes = [];
-
-            // Grab values from the data json object to build the plots
-            for (var i = 0; i < data.length; i++) {
-                zipcodes.push(data[i].zipcode);
-            }
-
-            //sanity check
-            //console.log(zipcodes);
-
-            var uniqueZips = zipcodes.filter((z, index) => {
-                return zipcodes.indexOf(z) === index;
-            });
-
-            //sort the zipcodes
-            uniqueZips.sort((a,b)=>a-b);
-
-            //sanity check
-            //console.log(uniqueZips);
-
-
-            //call on the function to populate the dropdown
-            populateMenu(uniqueZips);
-
-        });
-
-        //function to poluate the dropdown
-        function populateMenu(uniqueZips) {
-
-            var sel = document.getElementById('selDataset');
-            var fragment = document.createDocumentFragment();
-
-            uniqueZips.forEach(function(Zip, index) {
-                var opt = document.createElement('option');
-                opt.innerHTML = Zip;
-                opt.value = Zip;
-                fragment.appendChild(opt);
-            });
-
-            sel.appendChild(fragment);
+<script src="https://d3js.org/d3.v5.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<!-- <script type="text/javascript" src="static/comparisons.js"></script> -->
+<script>
+    d3.json('http://127.0.0.1:5000/listing').then(function(data) {
+        
+        //sanity check
+        //console.log(data);
+        
+        //arrays to save the zipcodes
+        var zipcodes = [];
+        
+        // Grab values from the data json object to build the plots
+        for (var i = 0; i < data.length; i++) {
+            zipcodes.push(data[i].zipcode);
         }
-    </script>
+        
+        //sanity check
+        //console.log(zipcodes);
+        
+        var uniqueZips = zipcodes.filter((z, index) => {
+            return zipcodes.indexOf(z) === index;
+        });
+        
+        //sort the zipcodes
+        uniqueZips.sort((a,b)=>a-b);
+        
+        //sanity check
+        //console.log(uniqueZips);
+        
+        
+        //call on the function to populate the dropdown
+        populateMenu(uniqueZips);
+        
+    });
+    
+    //function to populate the dropdown
+    function populateMenu(uniqueZips) {
+        
+        var sel = document.getElementById('selDataset');
+        var fragment = document.createDocumentFragment();
+        
+        uniqueZips.forEach(function(Zip, index) {
+            var opt = document.createElement('option');
+            opt.innerHTML = Zip;
+            opt.value = Zip;
+            fragment.appendChild(opt);
+        });
+        
+        sel.appendChild(fragment);
+    }
+    
+    //event handler to track when a new id is selected
+    d3.selectAll("#selDataset").on("click", optionChanged);
+    
+    //function to collect the selected id 
+    function optionChanged () {
+        var selected = d3.select("#selDataset");
+        var zip = selected.property("value");
+        
+        //sanity check
+        //console.log(id);
+        
+        //call on the function to create the plot
+        barPlot(zip);
+    }
+</script>
 </body>
