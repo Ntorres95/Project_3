@@ -89,7 +89,7 @@
         //function to populate the dropdown
         function populateMenu() {
             
-            d3.json("/listing").then(function(data) {
+            d3.csv("Resources/listings.csv").then(function(data) {
                 
                 //sanity check
                 //console.log(data);
@@ -145,7 +145,7 @@
         function barPlot(zip) {
             
             //grab  the info needed
-            d3.json("/listing").then(function(data) {
+            d3.csv("Resources/listing.csv").then(function(data) {
                 
                 //arrays to save the zipcodes
                 var zipcodes = [];
@@ -167,10 +167,10 @@
                 var count = 0;
                 
                 //loop to search for the info on the selected id
-                for (i = 0; i < uniqueZips.length; i++) {
-                    
-                    for (j = 0; j < data.length; j++) {
-                        if (uniqueZips[i] == data[j].zipcode) {
+                for (var i = 0; i < uniqueZips.length; i++) {
+                    var currentZip = uniqueZips[i];
+                    for (var j = 0; j < data.length; j++) {
+                        if (currentZip == data[j].zipcode) {
                             count++;
                         }
                     }
