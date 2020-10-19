@@ -15,23 +15,23 @@
     
     <nav class="navbar-expand-md navbar-light bg-light stick-top ">
         <div class="container-fluid">
-            <a class="navbar-brand" href="http://127.0.0.1:5000/">Boston Airbnb</a>
+            <a class="navbar-brand" href="./index.html">Boston Airbnb</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="./map.html"> Map </a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="./comparisons.html">Comparison</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="./data.html">Data</a>
-                    </li>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="./map.html"> Map </a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="./comparisons.html">Comparison</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="./data.html">Data</a>
+                </li>
                 </ul>
             </div>
         </div>
@@ -78,7 +78,7 @@
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <!-- <script type="text/javascript" src="static/comparisons.js"></script> -->
+    <!-- <script type="text/javascript" src="templates/static/comparisons.js"></script> -->
     <script>
         
         populateMenu();
@@ -89,7 +89,7 @@
         //function to populate the dropdown
         function populateMenu() {
             
-            d3.json("http://127.0.0.1:5000/listing").then(function(data) {
+            d3.json("/listing").then(function(data) {
                 
                 //sanity check
                 //console.log(data);
@@ -144,7 +144,7 @@
         function barPlot(zip) {
             
             //grab  the info needed
-            d3.json("http://127.0.0.1:5000/listing").then(function(data) {
+            d3.json("/listing").then(function(data) {
                 
                 //array to save the selected id's data
                 var names = [];
@@ -213,7 +213,7 @@
         function scatterPlot (zip) {
             
             //grab  the info needed
-            d3.json("samples.json").then(function(data) {
+            d3.json("/listing").then(function(data) {
                 
                 //array to save the selected id's data
                 var names = [];
