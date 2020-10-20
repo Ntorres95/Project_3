@@ -43,7 +43,7 @@ var highReviews = [];
 d3.csv("Resources/listings.csv", function(data) {
   for (var i = 0; i < data.length; i++) {
     if (data[i].number_of_reviews > 200) {
-      highReviews.push(data[i])
+      highReviews.push(data[i]);
       }
   }console.log(highReviews)
 })
