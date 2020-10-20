@@ -82,6 +82,7 @@
     <script>
         
         populateMenu();
+        barPlot();
         
         //event handler to track when a new id is selected
         d3.selectAll("#selDataset").on("click", optionChanged);
@@ -89,7 +90,7 @@
         //function to populate the dropdown
         function populateMenu() {
             
-            d3.csv("Resources/listings.csv").then(function(data) {
+            d3.json("/listing").then(function(data) {
                 
                 //sanity check
                 //console.log(data);
@@ -136,16 +137,15 @@
             //console.log(id);
             
             //call on the function to create the plots
-            barPlot(zip);
             scatterPlot(zip);
             metaData(zip);
         }
         
         //function to create the plot
-        function barPlot(zip) {
+        function barPlot() {
             
             //grab  the info needed
-            d3.csv("Resources/listing.csv").then(function(data) {
+            d3.json("/listing").then(function(data) {
                 
                 //arrays to save the zipcodes
                 var zipcodes = [];
@@ -164,21 +164,32 @@
                 
                 //array to hold the zip totals
                 var zipTotals = [];
-                var count = 0;
-                
+
                 //loop to search for the info on the selected id
                 for (var i = 0; i < uniqueZips.length; i++) {
+
+                    var count = 0;
                     var currentZip = uniqueZips[i];
                     for (var j = 0; j < data.length; j++) {
+                        //sanity check
+                        console.log(currentZip);
+                        
                         if (currentZip == data[j].zipcode) {
+                            
+                            //sanity check
+                            //console.log(data[j].zipcode)
+                            
                             count++;
                         }
                     }
-                    zipTotals.push[count];
+
+                    //sanity check
+                    console.log(count);
+                    zipTotals.push(count);
                 } 
 
                 //sanity check
-                console.log(zipTotals);
+                //console.log(zipTotals);
                 
                 //sanity check
                 //console.log(names);
@@ -191,7 +202,7 @@
                     orientation: 'h',
                 };
                 
-                var tickvals = zipcodes.map(function(e, i) {
+                var tickvals = uniqueZips.map(function(e, i) {
                     return i;
                 });
                 
@@ -200,8 +211,9 @@
                 
                 //create the layout array for the plot
                 var layout = {
+                    title: "Number of Listings Per Zipcode",
                     yaxis:{
-                        ticktext: zipcodes,
+                        ticktext: uniqueZips,
                         tickvals: tickvals
                     },
                     height: 750,
@@ -215,7 +227,7 @@
         function scatterPlot (zip) {
             
             //grab  the info needed
-            d3.csv("Resources/listing.csv").then(function(data) {
+            d3.json("/listing").then(function(data) {
                 
                 //array to save the selected id's data
                 var names = [];
@@ -225,6 +237,7 @@
                 var bedrooms = [];
                 var beds = [];
                 var prices = [];
+                var urls = [];
                 
                 //loop to search for the info on the selected id
                 for (i = 0; i < data.length; i++) {
@@ -239,7 +252,8 @@
                         neighbourhood.push(data[i].neighbourhood);
                         bedrooms.push(data[i].bedrooms);
                         beds.push(data[i].beds);
-                        prices.push(data[i].price_y)
+                        prices.push(data[i].price_y);
+                        urls.push(data[i].listing_url);
                     }
                 }
                 
@@ -247,12 +261,23 @@
                 var trace1 = {
                     x: prices,
                     y: ratings,
+                    urls: urls,
+                    bedrooms: bedrooms,
+                    beds: beds,
                     mode: 'markers',
                     text: names,
                     marker: {
                         color: ratings,
                         size: 15
-                    }
+                    },
+                    hovertemplate:
+                        "<b>%{text}</b><br><br>" +
+                        "Price: %{x:$,.0f}<br>" +
+                        "Rating: %{y}<br>" +
+                        "Bedrooms: %{bedrooms}<br>" +
+                        "Beds: %{beds}<br>" +
+                        "URL: %{urls}"+
+                        "<extra></extra>"
                 };
                 
                 var data = [trace1];
@@ -276,7 +301,7 @@
         function metaData(zip) {
             
             //grab  the info needed
-            d3.csv("Resources/listing.csv").then(function(data) {
+            d3.json("/listing").then(function(data) {
         
                 //array to save the selected id's data
                 var urls = [];
