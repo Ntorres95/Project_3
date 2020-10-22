@@ -23,3 +23,5 @@ Our site is composed of 4 main pages:
 #Complications
 
 In addition to lack of time, we also had a very difficult time synchronizing our repo as well as the deployment of our page. Because the data for the Data and Map pages is pulled directly from the listings.csv and the data for the Comparisons page is pulled from a flask route, we had to display our pages seperately. The Data and Maps pages are correctly displayed through a live server while the Comparisons only shows up when running the app.py in terminal and loading the page that way.
+
+Another complication involved loading the .js static files for the comparisons page. We couldn't figure out why it kept giving us a 404 error so we simply added the js code directly into the html code leading to a very very very long file of code. We would have liked to keep these as two seperate files but we genuinely didn't know what we were doing wrong.
