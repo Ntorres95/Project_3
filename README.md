@@ -1,6 +1,6 @@
 #Boston Airbnb (Project 3)
 
-***The Data and Maps pages are correctly displayed through a live server while the Comparisons only shows up when running the app.py in terminal and loading the page that way.***
+***The Home Page, Data and Maps pages are correctly displayed through a live server while the Comparisons only shows up when running the app.py in terminal and loading the page that way.***
 
 The aim of our site is to enable users to easily navigate the top rated Airbnbs (90 and above) in the Boston area.
 
